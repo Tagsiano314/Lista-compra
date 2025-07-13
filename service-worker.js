@@ -1,23 +1,25 @@
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open("lista-v1").then(cache => {
-      return cache.addAll([
-        "./",
-        "./index.html",
-        "./styles.css",      // si tienes
-        "./script.js",       // si tienes
-        "./manifest.json",
-        "./icono-192.png",
-        "./icono-512.png"
-      ]);
-    })
-  );
+// service-worker.js
+
+self.addEventListener('install', (event) => {
+  console.log('[SW] Instalando nuevo service worker...');
+  self.skipWaiting(); // Fuerza usar el nuevo SW inmediatamente
 });
 
-self.addEventListener("fetch", event => {
+self.addEventListener('activate', (event) => {
+  console.log('[SW] Activando service worker...');
+  self.clients.claim(); // Toma control de todas las pestañas abiertas
+});
+
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    caches.open('v1').then((cache) =>
+      cache.match(event.request).then((cachedResponse) => {
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        return cachedResponse || fetchPromise;
+      })
+    )
   );
 });
