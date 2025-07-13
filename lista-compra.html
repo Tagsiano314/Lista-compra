@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de compra</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISB
+    L29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="lista-compra.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="screen">
+        <div class="advertencia"></div>
+        <h2>Lista de compra</h2>
+        <div class="buscador">
+            <input type=”text” class="buscar" name=”casilla” placeholder="ej. Huevos">
+            <button class="añadir">Añadir</button>
+        </div>
+        <ul class="lista">
+            <li class="clon-original">
+                <p class="nombre-clon"></p>
+                <div class="botones">
+                    <button class="eliminar"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+        </ul>
+        <div class="limpiar">Borrar todo</div>
+    </div>
+    <div class="overlay">
+        <div class="mensaje-borrar">
+            <p>¿Estás seguro de que quieres borrar toda la lista?</p>
+            <div>
+                <button class="cancelar-borrado">Cancelar</button>
+                <button class="aceptar-borrado">Aceptar</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="lista-compra.js"></script>
+</body>
+</html>

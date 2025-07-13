@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+h1{font-size:3.5rem; font-weight:900;}
+h2{font-size:clamp(1.5rem, 7vw, 3rem); font-weight:700;}
+h3{font-size:2rem; font-weight:600;}
+p{font-size:1.25rem;}
+ul{list-style: none;}
+a{text-decoration:none; color:black;}
+
+
+body{
+    background-color: rgb(227, 242, 247);
+}
+
+.screen{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 700px;
+    height: auto;
+    max-height: 75%;
+    min-height: 35%;
+    background-color: white;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -.2rem .2rem 1rem grey, .2rem -.2rem 1rem grey;
+}
+
+.advertencia{
+    margin: .5rem 2rem;
+    width: 90%;
+    height: 2rem;
+    text-align: center;
+    padding: .3rem;
+    padding-top: .5rem;
+    font-size: .7rem;
+    font-weight: 700;
+    border-radius: 5px;
+    letter-spacing: .2rem;
+    
+}
+
+h2{
+    text-align: center;
+
+}
+
+.good{
+    background-color: rgba(40, 167, 69, 0.3);
+    color: rgb(7, 96, 7);
+}
+
+.bad{
+    background-color: rgba(220, 53, 69, 0.3);
+    color: rgb(145, 36, 36);
+}
+
+.buscador{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    width: 90%;
+    gap: 6px;
+}
+
+.buscar{
+    width: 90%;
+    height: 2.2rem;
+    border: none;
+    border-radius: 5px;
+    justify-content: space-around;
+    background-color: rgb(227, 242, 247);
+    padding: 1rem .5rem;
+    box-shadow: none;
+}
+
+.buscar:focus{
+    outline: none;
+    box-shadow: .1rem .1rem .8rem rgb(65, 112, 231), -.1rem -.1rem .8rem rgb(65, 112, 231);
+}
+
+.añadir{
+    border: none;
+    background-color: rgb(144, 212, 234);
+    border-radius: 3px;
+    padding: .2rem .3rem;
+    cursor: pointer;
+
+}
+
+.añadir:active{
+    background-color: rgb(130, 203, 227);
+}
+
+.limpiar{
+    margin: .1rem 2rem;
+    margin-top: 2rem;
+    width: 90%;
+    height: 1.5rem;
+    color: red;
+    font-weight: 300;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    font-size: clamp(.8rem, 4vw, 1rem);
+}
+
+ul{
+    width: 90%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    max-height: 15rem;
+}
+
+ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 2.4rem;
+    display: none;
+    flex-shrink: 0;
+    padding: 0 .8rem;
+    border-radius: 8px;
+}
+
+ul li:hover{
+    background-color: rgb(242, 251, 255);
+}
+
+.nombre-clon{
+    font-size: 1rem;
+}
+
+button{
+    border: none;
+    background-color: transparent;
+}
+
+i{
+    font-size: 1rem;
+    margin-left: .5rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.fa-trash{
+    color: red;
+    background-color: transparent;
+}
+
+/*Mensaje borrar*/
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.mensaje-borrar{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 22%;
+    width: 70%;
+    max-width: 250px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mensaje-borrar p{
+    font-size: 1.1rem;
+}
+
+.mensaje-borrar>div{
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    
+}
+
+.mensaje-borrar button{
+    border: 1px solid black;
+    padding: .3rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.mensaje-borrar button:active{
+    transform: scale(0.9);
+}
+
+.cancelar-borrado{
+    background-color: rgb(239, 235, 235);
+}
+
+.aceptar-borrado{
+    color: white;
+    background-color: rgb(20, 20, 171);
+}
