@@ -24,10 +24,10 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 85%;
+    width: 90%;
     max-width: 700px;
     height: auto;
-    max-height: 75%;
+    max-height: 85%;
     min-height: 35%;
     background-color: white;
     padding: .5rem;
@@ -105,7 +105,7 @@ h2{
 
 .limpiar{
     margin: .1rem 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 90%;
     height: 1.5rem;
     color: red;

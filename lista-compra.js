@@ -14,20 +14,64 @@ let confirmarBorrado = false;
 
 const clones = [];
 
+let datosClones = [];
+const clonesGuardados = JSON.parse(localStorage.getItem("listaClones")) || [];
+datosClones = [...clonesGuardados];
+clonesGuardados.forEach(objetoGuardado =>{
+    crearClonGuardado(objetoGuardado);
+});
+
+function crearClonGuardado (objetoGuardado) {
+    const clon = original.cloneNode(true);
+    clon.style.display = "flex";
+    clon.querySelector(".nombre-clon").textContent= objetoGuardado.texto;
+    if (objetoGuardado.tachado) {
+        clon.style.opacity = "0.5";
+        clon.style.backgroundColor = "rgba(161, 161, 161, 0.3)";
+        clon.style.textDecoration = "line-through";
+        clon.style.fontStyle = "italic";
+    }
+
+    clones.push(clon);
+    lista.appendChild(clon);
+
+    actualizarBotonLimpiar();
 
 
+    clon.querySelector(".fa-trash").addEventListener("click", ()=>{
+            clon.remove();
+            const index = clones.indexOf(clon);
+            if (index !== -1) {
+                clones.splice(index, 1);
+                datosClones.splice(index, 1);
+                localStorage.setItem("listaClones", JSON.stringify(datosClones));
+            }
+            actualizarBotonLimpiar();
 
+        });
+    clon.addEventListener("click", ()=>{
+            if (clon.style.opacity==="0.5"){
+                clon.style.opacity="1";
+                clon.style.backgroundColor="white";
+                clon.style.textDecoration="none";
+                clon.style.fontStyle="normal";
+            } else {
+                clon.style.opacity="0.5";
+                clon.style.backgroundColor="rgba(161, 161, 161, 0.3)";
+                clon.style.textDecoration="line-through";
+                clon.style.fontStyle="italic";
+            }
+            const index = clones.indexOf(clon);
+            const tachado = clon.style.opacity === "0.5";
+            if (index !== -1) {
+                datosClones[index].tachado = tachado;
+                localStorage.setItem("listaClones", JSON.stringify(datosClones));
+            }
+    });
+};
 
 function añadirElemento () {
-    
-    
-    if(clones.length===0){
-                limpiar.style.display="none";
-            } else {
-                limpiar.style.display="block";
-            }
-
-    if (buscar.value==="") {
+if (buscar.value==="") {
             advertencia.classList.add("bad");
             advertencia.textContent= "Introduce  Elemento";
             setTimeout(()=>{
@@ -38,6 +82,8 @@ function añadirElemento () {
     } else {
         const clon = original.cloneNode(true);
         clones.push(clon);
+        datosClones.push({texto: buscar.value, tachado: false});
+        localStorage.setItem("listaClones", JSON.stringify(datosClones));
         lista.appendChild(clon);
         limpiar.style.display="block";
         clon.querySelector(".fa-trash").addEventListener("click", ()=>{
@@ -45,12 +91,13 @@ function añadirElemento () {
             const index = clones.indexOf(clon);
             if (index !== -1) {
                 clones.splice(index, 1);
+                datosClones.splice(index, 1);
+                localStorage.setItem("listaClones", JSON.stringify(datosClones));
             }
-            if(clones.length===0){
-                limpiar.style.display="none";
-            } else {
-                limpiar.style.display="block";
-            }
+            
+
+            actualizarBotonLimpiar();
+
         });
         clon.addEventListener("click", ()=>{
             if (clon.style.opacity==="0.5"){
@@ -76,6 +123,9 @@ function añadirElemento () {
                 advertencia.textContent="";
         }, 1000);
     }
+
+    actualizarBotonLimpiar();
+
 };
 
 añadir.addEventListener("click", añadirElemento);
@@ -95,14 +145,23 @@ limpiar.addEventListener("click", ()=>{
                 li.remove();
                 limpiar.style.display="none";
             } 
-    
         })
+        datosClones=[];
+        clones.length=0;
+        localStorage.removeItem("listaClones");
+        limpiar.style.display = "none";
     });
     noPermitirBorrado.addEventListener("click", ()=>{
         mensajeAdvertencia.style.display="none";
     })
-    clones.length="0";
+    clones.length=0;
 });
+
+function actualizarBotonLimpiar() {
+    const hayClonesVisibles = [...lista.children].some(clon => clon !== original);
+    limpiar.style.display = hayClonesVisibles ? "block" : "none";
+}
+
 
 
 
